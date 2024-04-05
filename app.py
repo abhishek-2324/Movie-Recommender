@@ -4,11 +4,12 @@ import pandas as pd
 import requests #for API handling
 from urllib.request import urlopen
 import cloudpickle as cp
+from sklearn.externals import joblib
 
 movies_dict = pickle.load(open('movie_dict.pkl','rb'))
 ds = pd.DataFrame(movies_dict)
 
-similarity = cp.load(urlopen('https://drive.google.com/file/d/1tmBWrdLOiwpKyHwBGsE1ORBkqBQztqEd/view?usp=drive_link'))
+similarity = joblib.load(urlopen('https://drive.google.com/file/d/1tmBWrdLOiwpKyHwBGsE1ORBkqBQztqEd/view?usp=drive_link'))
 
 def fetch_poster(movie_id):
     response = requests.get(f'https://api.themoviedb.org/3/movie/{movie_id}?api_key=63327e3082fe5f1739b92a3c4d0a33e9&language=en-US')
